@@ -11,7 +11,6 @@ class TurtlesimEnvSingle(TurtlesimEnvBase):
     def __init__(self):
         super().__init__()
 
-    # TODO-STUDENCI przejechać 1/2 okresu, skręcić, przejechać pozostałą 1/2
     def students_step(self, action, tname):
 
         twist = Twist()

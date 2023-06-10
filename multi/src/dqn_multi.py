@@ -86,17 +86,15 @@ class DqnMulti(Dqn):
         step_cnt = 0
         train_cnt = 0
 
-        # TODO - refactor
         current_states = {tname: agent.map for tname, agent in self.env.agents.items()}
         last_states = {tname: agent.map for tname, agent in self.env.agents.items()}
         agent_episode = {tname: i for i, tname in enumerate(self.env.agents)}
         episode_rwrds[:len(self.env.agents)] = 0
         to_restart = set()
-        # End of TODO
 
         for episode in range(self.EPISODES_MAX):  # ucz w epizodach treningowych
             print(f'{len(self.replay_memory)} E{episode} ', end='')
-            self.env.reset(to_restart, ['random' for _ in to_restart])  # TODO - refactor - inicjalizacja wybranych
+            self.env.reset(to_restart, ['random' for _ in to_restart])
 
             for tname in to_restart:
                 current_states[tname] = self.env.agents[tname].map
@@ -108,7 +106,6 @@ class DqnMulti(Dqn):
             to_restart = set()
             controls = {}  # sterowania poszczególnych agentów
 
-            # while True:  # o przerwaniu decyduje do_train()  # TODO - needed?
             for tname in self.env.agents:
                 if np.random.random() > epsilon:  # sterowanie wg reguły albo losowe
                     controls[tname] = np.argmax(
@@ -151,7 +148,6 @@ class DqnMulti(Dqn):
                     epsilon *= self.EPS_DECAY
                     epsilon = max(self.EPS_MIN, epsilon)  # podtrzymaj losowość ruchów
 
-            # TODO-STUDENCI - Okresowy zapis modelu
             if save_model is True and episode > 0 and (episode + 1) % self.SAVE_MODEL_EVERY == 0:
                 self.model.save(self.model_filepath)
 
@@ -189,8 +185,6 @@ class DqnMulti(Dqn):
         x = np.stack(x)
         y = np.stack(y)
         self.model.fit(x, y, batch_size=self.TRAINING_BATCH_SIZE, verbose=0, shuffle=False)
-
-        # TODO-STUDENCI
         weights = np.copy(self.model.weights[0])
         weights[:, :, 8:, :, :] = np.copy(self.model.weights[0][:, :, 8:, :, :])
         self.model.weights[0] = tf.Variable(weights)

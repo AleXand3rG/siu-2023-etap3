@@ -108,10 +108,7 @@ class TurtlesimEnvBase(metaclass=abc.ABCMeta):
             if sections[tidx] == 'default':  # żółw pozycjonowany wg csv
                 sec_id = agent.sec_id
             elif sections[tidx] == 'random':  # żółw pozycjonowany w losowym segmencie jego trasy
-
-                # TODO-STUDENCI - losowanie obszaru proporcjonalnie do liczby planowanych żółwi w obszarze
                 sec_id = random.randint(0, len(self.routes[agent.route]) - 1)
-
             else:  # żółw pozycjonowany we wskazanym segmencie (liczone od 0)
                 sec_id = sections[tidx]
 
@@ -222,7 +219,6 @@ class TurtlesimEnvBase(metaclass=abc.ABCMeta):
 
         return fx, fy, fa, fd, fc + 1, fp + 1, fo  # informacja w ukł. wsp. żółwia
 
-    # TODO-STUDENCI
     @staticmethod
     def students_load_routes(filename, scale=1):
         print(f'Loading routes from the file: {filename}')

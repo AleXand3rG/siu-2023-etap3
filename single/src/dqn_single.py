@@ -126,7 +126,6 @@ class DqnSingle(Dqn):
             episode_rewards[episode] = episode_rwrd  # średnia nagroda za krok
             print(f' {np.nanmean(episode_rewards[episode - 19:episode + 1]) / self.env.MAX_STEPS:.2f}')
 
-            # TODO-STUDENCI - Okresowy zapis modelu
             if save_model is True and episode > 0 and (episode + 1) % self.SAVE_MODEL_EVERY == 0:
                 self.model.save(f'siu/models/{self.xid()}.h5')
 
@@ -165,7 +164,6 @@ class DqnSingle(Dqn):
         y = np.stack(y)
         self.model.fit(x, y, batch_size=self.TRAINING_BATCH_SIZE, verbose=0, shuffle=False)
 
-        # TODO-STUDENCI
         weights = np.copy(self.model.weights[0])
         weights[:, :, 8:, :, :] = np.copy(self.model.weights[0][:, :, 8:, :, :])
         self.model.weights[0] = tf.Variable(weights)

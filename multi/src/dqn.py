@@ -28,7 +28,7 @@ class Dqn(object):
         self.EPISODES_MAX = 4000  # *P liczba epizodów uczących, ile razy będzeimy trenować sieć zanim zacznie z niej korzystać   -nie ruszać
         self.CTL_DIM = 10  # liczba możliwych akcji (tj. sterowań, decyzji) są to możliwe ruchy         -    niedawać jako prędkość w scenariuszu 0 bo może się zaciąć
         self.TRAIN_EVERY = 4  # T co ile kroków uczenie modelu szybkozmiennego
-        self.SAVE_MODEL_EVERY = 20  # *  co ile epizodów zapisywać model # TODO-STUDENCI
+        self.SAVE_MODEL_EVERY = 20  # *  co ile epizodów zapisywać model
 
         self.model = None
         self.target_model = None
