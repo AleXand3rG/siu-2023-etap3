@@ -5,7 +5,7 @@ from keras.models import load_model
 
 # Setup simulation
 MOVES = 1000
-NUMBER_OF_AGENTS = 3
+NUMBER_OF_AGENTS = 8
 ROUTES_FILENAME = '/root/siu/routes_multi.csv'
 MODEL_FILEPATH = '/root/siu/models/model_multi.h5'
 

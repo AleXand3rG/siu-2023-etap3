@@ -3,7 +3,7 @@ import tensorflow as tf
 import turtlesim_env_multi
 from dqn_multi import DqnMulti
 
-NUMBER_OF_AGENTS = 3
+NUMBER_OF_AGENTS = 8
 NUMBER_OF_EPISODES = 4000  # pierwsze 2000 epizodów bez kolizji, kolejne 2000 epizodów z kolizjami
 ROUTES_FILENAME = '/root/siu/routes_multi.csv'
 
